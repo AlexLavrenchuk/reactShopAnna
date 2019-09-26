@@ -1,0 +1,45 @@
+@import '../../../sass/vars';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: $liteGreen;
+  .logo {
+    max-width: 80px;
+  }
+  .right_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart_btn {
+    position: relative;
+    margin-right: 20px;
+    border: 1px solid $liteRed;
+    border-radius: 5px;
+    color: $liteRed;
+    text-transform: uppercase;
+    font-weight: $boldFont;
+    letter-spacing: 3px;
+    padding: 10px 15px;
+    .notifications {
+      margin-left: 10px;
+      border-radius: 20px;
+      color: $white;
+      padding: 5px 8px 5px 10px;
+      background-color: $liteRed;
+      font-weight: $regularFont;
+      text-align: center;
+    }
+  }
+  .logout_btn {
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 10px 15px;
+    border: 1px solid $white;
+    border-radius: 5px;
+  }
+}

@@ -1,0 +1,21 @@
+.basic {
+  cursor: pointer;
+  border: 1px solid #1f73a8;
+  border-radius: 5px;
+  color: #1f73a8;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  outline:none; 
+  background-color: white;
+  width: 100%;
+  &:focus:enabled,
+  &:hover:enabled {
+    color: white;
+    background-color: #1f73a8;
+  }
+  &:disabled {
+    border: 1px solid #e0e0e0;
+    color: #e0e0e0;
+    cursor: default;
+  }
+}
