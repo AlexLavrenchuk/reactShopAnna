@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  padding: 10px;
+  .link {
+    color: white;
+    text-transform: uppercase;
+    margin-right: 20px;
+    &:hover {
+      color: blue;
+    }
+  }
+  .disabled {
+    cursor: default;
+    opacity: .5;
+    &:hover {
+      color: white;
+    }
+  }
+}

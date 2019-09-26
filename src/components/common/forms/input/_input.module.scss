@@ -1,0 +1,35 @@
+.group {
+  display: block;
+  position: relative;
+  margin-bottom: 32px;
+}
+.label {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #9e9e9e;
+  transition: top .3s, font-size .3s, color .3s;
+}
+.input {
+  display: block;
+  width: 100%;
+  border: none;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  outline: none;
+  transition: border-bottom .3s;
+  &:hover,
+  &:focus {
+    border-bottom: 1px solid #1f73a8;
+  }
+}
+.input:hover + .label,
+.input:focus + .label {
+  color: #1f73a8;
+}
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  top: -18px;
+  font-size: 12px;
+}

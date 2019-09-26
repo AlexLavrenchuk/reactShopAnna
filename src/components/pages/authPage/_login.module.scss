@@ -1,0 +1,19 @@
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  width: 300px;
+  padding: 32px;
+  border-radius: 10px;    
+  box-shadow: 0 4px 16px #ccc;
+  text-align: center;
+}
+.title {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  font-weight: normal;
+}
