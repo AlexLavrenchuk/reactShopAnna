@@ -17,7 +17,6 @@ export const fetchRequest = (url, option, functionStartRequest, functionRespons)
                 .then(response => response.json())
                 .catch(error => ({ error: "error" }))
                 .then(response => {
-                    console.log(response);
                     dispatch(functionRespons(response))
                 })
         }

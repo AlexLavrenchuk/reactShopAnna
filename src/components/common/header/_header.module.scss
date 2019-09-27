@@ -5,7 +5,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: $liteGreen;
+  background: #87e0fd;
+  background: -moz-linear-gradient(top,  #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+  background: -webkit-linear-gradient(top,  #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
+  background: linear-gradient(to bottom,  #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 );
+  
   .logo {
     max-width: 80px;
   }
@@ -24,6 +29,15 @@
     font-weight: $boldFont;
     letter-spacing: 3px;
     padding: 10px 15px;
+    transition: color .3s, background-color .3s;
+    &:hover {
+      color: $white;
+      background-color: $liteRed;
+      .notifications {
+        color: $liteRed;
+        background-color: $white;
+      }
+    }
     .notifications {
       margin-left: 10px;
       border-radius: 20px;
@@ -32,6 +46,7 @@
       background-color: $liteRed;
       font-weight: $regularFont;
       text-align: center;
+      transition: color .3s, background-color .3s;
     }
   }
   .logout_btn {
@@ -41,5 +56,10 @@
     padding: 10px 15px;
     border: 1px solid $white;
     border-radius: 5px;
+    transition: color .3s, background-color .3s;
+    &:hover {
+      color: $black;
+      background-color: $white;
+    }
   }
 }

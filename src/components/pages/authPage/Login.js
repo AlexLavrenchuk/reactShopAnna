@@ -1,49 +1,79 @@
-import React, { useState } from "react";
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 import styleLogin from "./_login.module.scss";
 import { Input } from "../../common/forms";
 import Button from "../../common/button/Button";
 
-import Preloader from '../../common/preloader/Preloader';
-import { fetchRequest } from '../../common/fetch/fetch';
+import Preloader from "../../common/preloader/Preloader";
+import { fetchRequest } from "../../common/fetch/fetch";
 
-import { loginRequest, loginRequestSussess, loginRequestError, btn, nameChange, passwordChange } from './../../store/actionCreator';
+import {
+  loginRequest,
+  loginRequestSuccess,
+  loginRequestError
+} from "./../../store/actionCreator";
 
-const Login = (props) => {
+const Login = props => {
   console.log(props);
-  const { loginPreloader, buttonDisabled, errorMessage, name, password } = props.loginStateToProps;
-  const { login, btnLock, changeName, changePasswoord, validForm } = props;
+  const { loginPreloader, errorMessage } = props.loginStateToProps;
+  const { sendForm } = props;
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    login(name, password);
-  }
+  const loginSchema = Yup.object().shape({
+    loginName: Yup.string()
+      .min(8, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    password: Yup.string()
+      .min(8, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required')
+  });
 
   return (
     <div className={styleLogin.login}>
-      <form className={styleLogin.form} onSubmit={submitHandler}>
+      <div className={styleLogin.container_form}>
         <h1 className={styleLogin.title}>Login</h1>
-        <Input
-          type="text"
-          label="Name"
-          name="name"
-
-          handlerInputChange={e=>changeName(e.target.value)}
-        />
-        <Input
-          type="password"
-          label="Password"
-          name="password"
-
-          handlerInputChange={e=>changePasswoord(e.target.value)}
-        />
-        { loginPreloader ? <Preloader /> : <Button type="submit" title={errorMessage ? errorMessage : "send"} disabled={buttonDisabled} />}
-      </form>
+        <Formik
+          initialValues={{
+            loginName: "",
+            password: ""
+          }}
+          validationSchema={loginSchema}
+          onSubmit={values => {
+            sendForm(values);
+          }}
+        >
+          {({ isValid }) => (
+            <Form>
+              <Field
+                type="text"
+                name="loginName"
+                component={Input}
+                label="Name"
+                id="loginName"
+              />
+              <Field
+                type="password"
+                name="password"
+                component={Input}
+                label="Password"
+                id="password"
+              />
+              {
+                loginPreloader
+                ? <Preloader />
+                : <Button type="submit" title={errorMessage || "send"} disabled={!isValid} />
+              }
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
-  
-}
+};
 
 const mapStateToProps = state => {
   return {
@@ -52,7 +82,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  const fetchLogin = info => {
+  const fetchLogin = dataForm => {
     return fetchRequest(
       "fake",
       {
@@ -60,25 +90,18 @@ const mapDispatchToProps = dispatch => {
         header: JSON.stringify({
           authorization: "bearer "
         }),
-        body: JSON.stringify(info)
+        body: JSON.stringify(dataForm)
       },
-      () => loginRequest(),
+      () => loginRequest(dataForm),
       response => {
-        return response ? loginRequestSussess("fake_token") : loginRequestError("try again)))");
+        return response
+          ? loginRequestSuccess("fake_token")
+          : loginRequestError("Error try again");
       }
     );
   };
-  const checkLength = /[0-9a-zA-Z!@#$%^&*]{8,}/;
-  
-  const validData = (name, password) => {
-    (checkLength.test(name) === true && checkLength.test(password) === true) ? btn(true) : btn(false);
-  }
   return {
-    login: info => dispatch(fetchLogin(info)),
-    btnLock: (bool) => dispatch(btn(bool)),
-    changeName: (name) => dispatch(nameChange(name)),
-    changePasswoord: (password) => dispatch(passwordChange(password)),
-    validForm: (name, password) => dispatch(validData(name, password))
+    sendForm: dataForm => dispatch(fetchLogin(dataForm))
   };
 };
 

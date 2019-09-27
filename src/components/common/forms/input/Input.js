@@ -7,24 +7,40 @@ const Input = (props) => {
     type,
     label,
     name,
-    handlerInputChange
+    id,
+    placeholder,
+    field,
+    form : { touched, errors }
   } = props;
+
   return (
     <div className={styleInput.group}>
+      
       <input
-        className={styleInput.input}
+        className={`${styleInput.input} ${touched[field.name] && errors[field.name] && styleInput.error}`}
         type={type}
-        id={name}
+        id={id}
         name={name}
-        placeholder=' '
-        onInput={handlerInputChange}
+        placeholder={placeholder || ' '}
+        {...field}
       />
+      {
+        label
+        ? 
       <label
         className={styleInput.label}
-        htmlFor={name}
-        >
+        htmlFor={id}
+      >
         {label}
       </label>
+        :
+        null
+      }
+      {
+        touched[field.name] &&
+        errors[field.name] &&
+        <div className={styleInput.error_message}>{errors[field.name]}</div>
+      }
     </div>
     
   )

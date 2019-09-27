@@ -1,0 +1,21 @@
+
+.main {
+  background: #feffff;
+  background: -moz-linear-gradient(left,  #feffff 0%, #d3ffff 50%, #d2ebf9 100%);
+  background: -webkit-linear-gradient(left,  #feffff 0%,#d3ffff 50%,#d2ebf9 100%);
+  background: linear-gradient(to right,  #feffff 0%,#d3ffff 50%,#d2ebf9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#d2ebf9',GradientType=1 );
+  }
+.footer {
+  background: #7d7e7d;
+  background: -moz-linear-gradient(-45deg,  #7d7e7d 0%, #0e0e0e 100%);
+  background: -webkit-linear-gradient(-45deg,  #7d7e7d 0%,#0e0e0e 100%);
+  background: linear-gradient(135deg,  #7d7e7d 0%,#0e0e0e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 );
+  &_content {
+    padding: 20px;
+  }
+  &_title {
+    color: white;
+  }
+}

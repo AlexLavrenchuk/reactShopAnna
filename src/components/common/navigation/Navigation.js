@@ -1,25 +1,38 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import styleNav from "./_navigation.module.scss";
+
+
 
 
 const Navigation = () => {
   return (
     <nav className={styleNav.nav}>
-      <Link to="/"
+      <NavLink
+        exact to="/"
         className={styleNav.link}
-      >Home</Link>
+        activeClassName={styleNav.active}
+      >
+        Home
+      </NavLink>
 
-      <Link to="/about"
-        className={`${styleNav.link} ${styleNav.disabled}`}
-        onClick={e => e.preventDefault()}
-      >About us</Link>
+      <NavLink
+        to="/market"
+        className={`${styleNav.link}`}
+        activeClassName={styleNav.active}
+      >
+        Market
+      </NavLink>
 
-      <Link to="/products"
+      <NavLink
+        to="/about"
         className={`${styleNav.link} ${styleNav.disabled}`}
+        activeClassName={styleNav.active}
         onClick={e => e.preventDefault()}
-      >Products</Link>
+      >
+        About us
+      </NavLink>
     </nav>
   );
 };

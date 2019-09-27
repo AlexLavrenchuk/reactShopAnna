@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import { connect } from "react-redux";
 import { Router, Route, Redirect, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
@@ -14,7 +13,6 @@ export const history = createBrowserHistory();
 class App extends Component {
    
   protectedRoute(Component) {
-    console.log(localStorage.getItem("token"));
     return (localStorage.getItem("token")) ? (
       <Component />
     ) : (
@@ -48,14 +46,6 @@ class App extends Component {
       </Router>
     );
   }
-  
 }
 
-export default connect(
-  state => ({
-    a: state
-  }),
-  dispatch => ({
-
-  })
-)(App);
+export default App;
