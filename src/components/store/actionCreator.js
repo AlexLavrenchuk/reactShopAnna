@@ -1,46 +1,44 @@
 import { history } from './../../App';
 import {
-  START_REQUEST,
-  PUT_PRODUCT_TO_STATE,
-  GET_ERROR,
+  MARKET_REQUEST,
+  MARKET_REQUEST_SUCCESS,
+  MARKET_REQUEST_ERROR,
 
   LOGIN_REQUEST,
   LOGIN_REQUEST_SUCCESS,
   LOGIN_REQUEST_ERROR,
 
-  BTN_LOCK,
-  CHANGE_NAME,
-  CHANGE_PASSWORD
+  PUT_ITEM_TO_CART,
+  DELETE_ITEM_FROM_CART
 } from './action';
 
 //===============
-export function preloaderShow() {
+export function marketRequest() {
   return {
-    type: START_REQUEST
+    type: MARKET_REQUEST
   }
 }
-export function putProductToState(data) {
+export function marketRequestSuccess(data) {
   return {
-    type: PUT_PRODUCT_TO_STATE,
-    newProduct: data
+    type: MARKET_REQUEST_SUCCESS,
+    payload: data
   };
 }
-export function getError(errorMessage) {
+export function marketRequestError(errorMessage) {
   return {
-    type: GET_ERROR,
-    errorMessage: errorMessage
+    type: MARKET_REQUEST_ERROR,
+    payload: errorMessage
   }
 }
 
 //===================
-export function loginRequest(email, password) {
+export function loginRequest(data) {
   return {
     type: LOGIN_REQUEST,
-    email,
-    password
+    payload: data
   };
 }
-export function loginRequestSussess(token) {
+export function loginRequestSuccess(token) {
   localStorage.setItem("token", `${token}`);
   history.push("/market");
   return {
@@ -54,21 +52,16 @@ export function loginRequestError(data) {
     payload: data
   };
 }
-export function btn(bool) {
+//===========
+export function putItemToCart(elem) {
   return {
-    type: BTN_LOCK,
-    payload: bool
+    type: PUT_ITEM_TO_CART,
+    payload: elem
   };
 }
-export function nameChange(text) {
+export function deleteItemFromCart(data) {
   return {
-    type: CHANGE_NAME,
-    payload: text
-  };
-}
-export function passwordChange(text) {
-  return {
-    type: CHANGE_PASSWORD,
-    payload: text
+    type: DELETE_ITEM_FROM_CART,
+    payload: data
   };
 }
