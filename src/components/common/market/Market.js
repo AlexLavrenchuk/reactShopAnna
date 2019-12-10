@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => {
       () => marketRequest(),
       response => {
         return response.error
-          ? marketRequestError("Error message")
+          ? marketRequestError("Error. Please check your internet connection")
           : marketRequestSuccess(response);
       }
     );

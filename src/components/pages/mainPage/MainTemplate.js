@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from 'react-router-dom';
 
 import Header from '../../common/header/Header';
+import Home from '../../common/home/Home';
 import Cart from '../../common/cart/Cart';
 import Market from '../../common/market/Market';
 
@@ -20,6 +21,7 @@ const MainTemplate = () => {
     <div style={styles.wrapper}>
       <Header />
       <main className={styleMainTemplate.main}>
+        <Route exact path='/' component={Home} />
         <Route path='/cart' component={Cart} />
         <Route path='/market' component={Market} />
       </main>

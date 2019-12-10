@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import logo from '../../../img/logo.png';
 import styleHeader from './_header.module.scss';
 
 import Navigation from '../navigation/Navigation';
@@ -14,7 +13,7 @@ const Header = (props) => {
     <header className={styleHeader.header}>
       <div className={styleHeader.logo}>
         <Link to='/'>
-          <img src={logo} alt='logo'></img>
+          <img src="https://www.itcraft.com.ua/wp-content/themes/itc/images/logo.png" alt='logo'></img>
         </Link>  
       </div>
       <div className={styleHeader.right_section}>
